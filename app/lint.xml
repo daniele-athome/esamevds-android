@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="InvalidPackage">
+        <ignore path="libs/esame_VDS.jar"/>
+        <ignore path="**/flexmark-util-*.jar"/>
+    </issue>
+    <issue id="IconLocation">
+        <ignore path="**/res/drawable/fig*.jpg"/>
+    </issue>
+</lint>
