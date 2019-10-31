@@ -1,0 +1,136 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">EsameVDS</string>
+
+    <string name="text_version">Versione %1$s (%2$d)</string>
+
+    <string name="specialty0">Multiassi - Ala fissa</string>
+    <string name="specialty1">Multiassi - Motoaliante</string>
+    <string name="specialty2">Paramotore</string>
+    <string name="specialty3">Autogiro</string>
+    <string name="specialty4">Elicottero</string>
+
+    <string name="main_title">@string/app_name</string>
+    <string name="main_subtitle">Seleziona specialità</string>
+
+    <string name="title_subjects">Materie</string>
+    <string name="title_icao_alphabet">Alfabeto ICAO</string>
+
+    <string name="subject1">Aerodinamica</string>
+    <string name="subject2">Meteorologia</string>
+    <string name="subject3">Tecnologia e prestazioni degli apparecchi VDS</string>
+    <string name="subject4">Tecnica di pilotaggio</string>
+    <string name="subject5">Operazioni ed atterraggi di emergenza</string>
+    <string name="subject6">Norme di circolazione ed elementi di fonia aeronautica</string>
+    <string name="subject7">Navigazione aerea</string>
+    <string name="subject8">Elementi di legislazione aeronautica</string>
+    <string name="subject9">Sicurezza del volo</string>
+
+    <string name="icao_alphabet_a">Alfa</string>
+    <string name="icao_alphabet_b">Bravo</string>
+    <string name="icao_alphabet_c">Charlie</string>
+    <string name="icao_alphabet_d">Delta</string>
+    <string name="icao_alphabet_e">Echo</string>
+    <string name="icao_alphabet_f">Foxtrot</string>
+    <string name="icao_alphabet_g">Golf</string>
+    <string name="icao_alphabet_h">Hotel</string>
+    <string name="icao_alphabet_i">India</string>
+    <string name="icao_alphabet_j">Juliett</string>
+    <string name="icao_alphabet_k">Kilo</string>
+    <string name="icao_alphabet_l">Lima</string>
+    <string name="icao_alphabet_m">Mike</string>
+    <string name="icao_alphabet_n">November</string>
+    <string name="icao_alphabet_o">Oscar</string>
+    <string name="icao_alphabet_p">Papa</string>
+    <string name="icao_alphabet_q">Quebec</string>
+    <string name="icao_alphabet_r">Romeo</string>
+    <string name="icao_alphabet_s">Sierra</string>
+    <string name="icao_alphabet_t">Tango</string>
+    <string name="icao_alphabet_u">Uniform</string>
+    <string name="icao_alphabet_v">Victor</string>
+    <string name="icao_alphabet_w">Whiskey</string>
+    <string name="icao_alphabet_x">X-ray</string>
+    <string name="icao_alphabet_y">Yankee</string>
+    <string name="icao_alphabet_z">Zulu</string>
+
+    <string name="game_choice_exam">Simula esame</string>
+    <string name="game_choice_subject">Simula materia</string>
+    <string name="game_choice_quickie">Domande rapide</string>
+
+    <string name="text_info_exam">Una simulazione completa di un esame VDS. Potrai verificare le risposte solo quando deciderai di terminare l\'esame.</string>
+    <string name="text_info_exam_in_progress" tools:ignore="PluralsCandidate">Esame in corso. Risposte %1$d di %2$d domande</string>
+    <string name="text_info_subject">Rispondi a tutte le domande di una materia.</string>
+    <string name="text_info_quickie">Quiz senza limiti. Il risultato sarà disponibile dopo ogni risposta.</string>
+
+    <string name="message_exam_in_progress">Un altro esame è in corso. Vuoi riprenderlo?</string>
+    <string name="button_exam_in_progress_resume">Riprendi</string>
+    <string name="button_exam_in_progress_new">Nuovo</string>
+
+    <string name="message_abort_exam">Annullare l\'esame?</string>
+    <plurals name="message_terminate_exam">
+        <item quantity="one">Terminare l\'esame? Hai risposto a %1$d domanda.</item>
+        <item quantity="other">Terminare l\'esame? Hai risposto a %1$d domande.</item>
+    </plurals>
+
+    <string name="exam_progress">Domanda %1$d di %2$d</string>
+    <string name="button_next">Successivo</string>
+    <string name="button_previous">Precedente</string>
+    <string name="button_terminate">Termina esame</string>
+
+    <string name="exam_passed">IDONEO</string>
+    <string name="exam_not_passed">NON IDONEO</string>
+
+    <string name="text_answers_correct">Esatte</string>
+    <string name="text_answers_wrong">Errate</string>
+    <string name="text_answers_unanswered">Non risposte</string>
+
+    <string name="text_answers_recap">Risposte errate/saltate</string>
+
+    <string-array name="specialty_names" translatable="false">
+        <item>@string/specialty0</item>
+        <item>@string/specialty1</item>
+        <item>@string/specialty2</item>
+        <item>@string/specialty3</item>
+        <item>@string/specialty4</item>
+    </string-array>
+
+    <string-array name="subject_names" translatable="false">
+        <item>@string/subject1</item>
+        <item>@string/subject2</item>
+        <item>@string/subject3</item>
+        <item>@string/subject4</item>
+        <item>@string/subject5</item>
+        <item>@string/subject6</item>
+        <item>@string/subject7</item>
+        <item>@string/subject8</item>
+        <item>@string/subject9</item>
+    </string-array>
+
+    <string-array name="icao_alphabet" translatable="false">
+        <item>@string/icao_alphabet_a</item>
+        <item>@string/icao_alphabet_b</item>
+        <item>@string/icao_alphabet_c</item>
+        <item>@string/icao_alphabet_d</item>
+        <item>@string/icao_alphabet_e</item>
+        <item>@string/icao_alphabet_f</item>
+        <item>@string/icao_alphabet_g</item>
+        <item>@string/icao_alphabet_h</item>
+        <item>@string/icao_alphabet_i</item>
+        <item>@string/icao_alphabet_j</item>
+        <item>@string/icao_alphabet_k</item>
+        <item>@string/icao_alphabet_l</item>
+        <item>@string/icao_alphabet_m</item>
+        <item>@string/icao_alphabet_n</item>
+        <item>@string/icao_alphabet_o</item>
+        <item>@string/icao_alphabet_p</item>
+        <item>@string/icao_alphabet_q</item>
+        <item>@string/icao_alphabet_r</item>
+        <item>@string/icao_alphabet_s</item>
+        <item>@string/icao_alphabet_t</item>
+        <item>@string/icao_alphabet_u</item>
+        <item>@string/icao_alphabet_v</item>
+        <item>@string/icao_alphabet_w</item>
+        <item>@string/icao_alphabet_x</item>
+        <item>@string/icao_alphabet_y</item>
+        <item>@string/icao_alphabet_z</item>
+    </string-array>
+</resources>

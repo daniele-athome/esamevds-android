@@ -1,0 +1,44 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MainActivity" />
+
+    <style name="MainActivity.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextAppearance"/>
+
+    <style name="TextAppearance.Badge" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+
+    <style name="TextAppearance.Badge.Default" parent="TextAppearance.Badge">
+        <item name="android:background">@drawable/badge_blue</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextAppearance.Badge.Success" parent="TextAppearance.Badge">
+        <item name="android:background">@drawable/badge_green</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextAppearance.Badge.Error" parent="TextAppearance.Badge">
+        <item name="android:background">@drawable/badge_red</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

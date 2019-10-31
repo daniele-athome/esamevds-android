@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".ui.MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="@string/main_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/title"
+        android:padding="4dp"
+        android:text="@string/main_subtitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <Button
+        android:id="@+id/button1"
+        android:tag="0"
+        android:onClick="select"
+        style="@style/MainActivity.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subtitle"
+        android:text="@string/specialty0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:tag="1"
+        android:onClick="select"
+        style="@style/MainActivity.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:text="@string/specialty1" />
+
+    <Button
+        android:id="@+id/button3"
+        android:tag="2"
+        android:onClick="select"
+        style="@style/MainActivity.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:text="@string/specialty2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:tag="3"
+        android:onClick="select"
+        style="@style/MainActivity.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button3"
+        android:text="@string/specialty3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:tag="4"
+        android:onClick="select"
+        style="@style/MainActivity.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
+        android:text="@string/specialty4" />
+
+    <Button
+        android:id="@+id/button_icao_alphabet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_version"
+        android:text="@string/title_icao_alphabet" />
+
+    <TextView
+        android:id="@+id/text_version"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        tools:text="Versione 1.0 (1)" />
+
+</RelativeLayout>

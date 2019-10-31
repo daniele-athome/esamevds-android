@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<it.casaricci.esamevds.ui.view.RecapItemView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="Per un ultraleggero monomotore, il gruppo motoelica, oltre a formare la trazione, determina effetti secondari?" />
+
+    <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageView
+        android:id="@+id/image_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        tools:visibility="visible"
+        tools:src="@drawable/fig3"/>
+
+    <RadioButton
+        android:id="@+id/radio_answer1"
+        android:tag="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/question_answers_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:visibility="gone"
+        android:clickable="false"
+        tools:visibility="visible"
+        tools:checked="true"
+        tools:text="sì, la direzione ed entità della forza prodotta, rispetto alla cellula e alle superfici stabilizzatrici e di governo, nonché  la coppia di reazione dell'elica, determinano variazioni di assetto"/>
+
+    <RadioButton
+        android:id="@+id/radio_answer2"
+        android:tag="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/question_answers_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:visibility="gone"
+        android:clickable="false"
+        tools:visibility="visible"
+        tools:text="serve principalmente per aumentare la portanza dell'ala"/>
+
+    <RadioButton
+        android:id="@+id/radio_answer3"
+        android:tag="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/question_answers_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:visibility="gone"
+        android:clickable="false"
+        tools:visibility="visible"
+        tools:text="serve come zavorra per equilibrare la distribuzione dei pesi"/>
+
+    <RadioButton
+        android:id="@+id/radio_answer4"
+        android:tag="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/question_answers_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:visibility="gone"
+        android:clickable="false"
+        tools:visibility="visible"
+        tools:text="non ha alcuna influenza sull'assetto dell'ultraleggero"/>
+
+</it.casaricci.esamevds.ui.view.RecapItemView>
