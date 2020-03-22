@@ -32,7 +32,7 @@ class IcaoAlphabetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_icao_alphabet)
 
-        list_alphabet.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+        list_alphabet.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
             resources.getStringArray(R.array.icao_alphabet))
     }
 

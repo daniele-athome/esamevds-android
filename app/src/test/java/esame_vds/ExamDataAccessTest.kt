@@ -48,8 +48,8 @@ class ExamDataAccessTest {
             val arrayRispostaD: Array<String>
             val arrayCorretta: CharArray
 
-            when {
-                question.subject == ExamSubject.AERODYNAMICS -> {
+            when (question.subject) {
+                ExamSubject.AERODYNAMICS -> {
                     arrayDomanda = Esame_VDS.quiz1_domanda
                     arrayNumeroDomande = Esame_VDS.quiz1_numero_domande
                     arrayRispostaA = Esame_VDS.quiz1_a
@@ -58,7 +58,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz1_d
                     arrayCorretta = Esame_VDS.quiz1_esatta
                 }
-                question.subject == ExamSubject.METEOROLOGY -> {
+                ExamSubject.METEOROLOGY -> {
                     arrayDomanda = Esame_VDS.quiz2_domanda
                     arrayNumeroDomande = Esame_VDS.quiz2_numero_domande
                     arrayRispostaA = Esame_VDS.quiz2_a
@@ -67,7 +67,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz2_d
                     arrayCorretta = Esame_VDS.quiz2_esatta
                 }
-                question.subject == ExamSubject.TECHNOLOGY -> {
+                ExamSubject.TECHNOLOGY -> {
                     arrayDomanda = Esame_VDS.quiz3_domanda
                     arrayNumeroDomande = Esame_VDS.quiz3_numero_domande
                     arrayRispostaA = Esame_VDS.quiz3_a
@@ -76,7 +76,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz3_d
                     arrayCorretta = Esame_VDS.quiz3_esatta
                 }
-                question.subject == ExamSubject.PILOTING -> {
+                ExamSubject.PILOTING -> {
                     arrayDomanda = Esame_VDS.quiz4_domanda
                     arrayNumeroDomande = Esame_VDS.quiz4_numero_domande
                     arrayRispostaA = Esame_VDS.quiz4_a
@@ -85,7 +85,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz4_d
                     arrayCorretta = Esame_VDS.quiz4_esatta
                 }
-                question.subject == ExamSubject.EMERGENCIES -> {
+                ExamSubject.EMERGENCIES -> {
                     arrayDomanda = Esame_VDS.quiz5_domanda
                     arrayNumeroDomande = Esame_VDS.quiz5_numero_domande
                     arrayRispostaA = Esame_VDS.quiz5_a
@@ -94,7 +94,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz5_d
                     arrayCorretta = Esame_VDS.quiz5_esatta
                 }
-                question.subject == ExamSubject.TRAFFIC -> {
+                ExamSubject.TRAFFIC -> {
                     arrayDomanda = Esame_VDS.quiz6_domanda
                     arrayNumeroDomande = Esame_VDS.quiz6_numero_domande
                     arrayRispostaA = Esame_VDS.quiz6_a
@@ -103,7 +103,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz6_d
                     arrayCorretta = Esame_VDS.quiz6_esatta
                 }
-                question.subject == ExamSubject.NAVIGATION -> {
+                ExamSubject.NAVIGATION -> {
                     arrayDomanda = Esame_VDS.quiz7_domanda
                     arrayNumeroDomande = Esame_VDS.quiz7_numero_domande
                     arrayRispostaA = Esame_VDS.quiz7_a
@@ -112,7 +112,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz7_d
                     arrayCorretta = Esame_VDS.quiz7_esatta
                 }
-                question.subject == ExamSubject.LEGISLATION -> {
+                ExamSubject.LEGISLATION -> {
                     arrayDomanda = Esame_VDS.quiz8_domanda
                     arrayNumeroDomande = Esame_VDS.quiz8_numero_domande
                     arrayRispostaA = Esame_VDS.quiz8_a
@@ -121,7 +121,7 @@ class ExamDataAccessTest {
                     arrayRispostaD = Esame_VDS.quiz8_d
                     arrayCorretta = Esame_VDS.quiz8_esatta
                 }
-                question.subject == ExamSubject.SECURITY -> {
+                ExamSubject.SECURITY -> {
                     arrayDomanda = Esame_VDS.quiz9_domanda
                     arrayNumeroDomande = Esame_VDS.quiz9_numero_domande
                     arrayRispostaA = Esame_VDS.quiz9_a
