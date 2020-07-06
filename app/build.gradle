@@ -68,8 +68,8 @@ dependencies {
     implementation 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.0'
     implementation 'com.afollestad.material-dialogs:core:3.1.1'
     // Markdown convertor (Flexmark)
-    implementation 'com.vladsch.flexmark:flexmark:0.50.42'
-    implementation 'com.vladsch.flexmark:flexmark-util:0.50.42'
+    implementation 'com.vladsch.flexmark:flexmark:0.62.2'
+    implementation 'com.vladsch.flexmark:flexmark-util:0.62.2'
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
