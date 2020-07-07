@@ -18,11 +18,13 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1565C0</color>
+    <color name="colorPrimaryVariant">#00009e</color>
+    <color name="colorAccent">#03A9F4</color>
 
     <color name="textPassed">#00B000</color>
     <color name="textNotPassed">#FF0000</color>
     <color name="colorPassed">#00B000</color>
+
+    <color name="tintEndAction">#FF1744</color>
 </resources>
