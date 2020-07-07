@@ -24,8 +24,8 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.ComparisonFailure
 import org.junit.Test
+import java.lang.AssertionError
 
 class ExamDataAccessTest {
 
@@ -158,7 +158,7 @@ class ExamDataAccessTest {
                     assertEquals(arrayCorretta[indexDomanda] - 'A', question.correctAnswer)
                     break
                 }
-                catch (e: ComparisonFailure) {
+                catch (e: AssertionError) {
                     println("Matching question $attemptIndex failed, trying next question")
                     attemptIndex = indexDomanda + 1
                 }
