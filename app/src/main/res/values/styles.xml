@@ -28,7 +28,7 @@
 
     <style name="MainActivity" />
 
-    <style name="MainActivity.Button" parent="Widget.AppCompat.Button">
+    <style name="MainActivity.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -43,7 +43,7 @@
 
     <style name="TextAppearance"/>
 
-    <style name="TextAppearance.Badge" parent="TextAppearance.AppCompat.Display1">
+    <style name="TextAppearance.Badge" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
     </style>
@@ -61,6 +61,15 @@
     <style name="TextAppearance.Badge.Error" parent="TextAppearance.Badge">
         <item name="android:background">@drawable/badge_red</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextAppearance.Exam.QuestionIndicator" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Exam.QuestionText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">22sp</item>
     </style>
 
 </resources>

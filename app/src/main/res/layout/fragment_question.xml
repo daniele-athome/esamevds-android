@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/text_subject"
-        style="@style/TextAppearance.AppCompat.Medium"
+        style="@style/TextAppearance.Exam.QuestionIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/text_question"
-                style="@style/TextAppearance.AppCompat.Large"
+                style="@style/TextAppearance.Exam.QuestionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Per un ultraleggero monomotore, il gruppo motoelica, oltre a formare la trazione, determina effetti secondari?" />
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_answers_margin"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:visibility="gone"
                     tools:visibility="visible"
                     tools:text="sì, la direzione ed entità della forza prodotta, rispetto alla cellula e alle superfici stabilizzatrici e di governo, nonché  la coppia di reazione dell'elica, determinano variazioni di assetto"/>
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_answers_margin"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:visibility="gone"
                     tools:visibility="visible"
                     tools:text="serve principalmente per aumentare la portanza dell'ala"/>
@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_answers_margin"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:visibility="gone"
                     tools:visibility="visible"
                     tools:text="serve come zavorra per equilibrare la distribuzione dei pesi"/>
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/question_answers_margin"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:visibility="gone"
                     tools:visibility="visible"
                     tools:text="non ha alcuna influenza sull'assetto dell'ultraleggero"/>

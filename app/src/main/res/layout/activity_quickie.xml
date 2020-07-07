@@ -29,18 +29,18 @@
 
     <TextView
         android:id="@+id/text_progress"
-        style="@style/TextAppearance.AppCompat.Medium"
+        style="@style/TextAppearance.Exam.QuestionIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         tools:text="Domanda 35 di 687"/>
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.ProgressIndicator
         android:id="@+id/progress_exam"
         android:layout_width="match_parent"
         android:layout_height="6dp"
         android:layout_below="@+id/text_progress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        style="@style/Widget.MaterialComponents.ProgressIndicator.Linear.Determinate"
         tools:progress="50"/>
 
     <FrameLayout
@@ -63,6 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+                android:layout_marginEnd="4dp"
             android:text="@string/button_previous"/>
 
         <Button
@@ -70,7 +71,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/button_next" />
+            android:layout_marginStart="4dp"
+            android:text="@string/button_next"/>
 
     </LinearLayout>
 
