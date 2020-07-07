@@ -28,7 +28,7 @@
         android:id="@+id/text_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.Exam.QuestionText"
         tools:text="Per un ultraleggero monomotore, il gruppo motoelica, oltre a formare la trazione, determina effetti secondari?" />
 
     <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageView
@@ -45,11 +45,11 @@
     <RadioButton
         android:id="@+id/radio_answer1"
         android:tag="0"
+        style="@style/AppTheme.RadioButton.ItemRecap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="@dimen/question_answers_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:visibility="gone"
         android:clickable="false"
         tools:visibility="visible"
@@ -59,10 +59,10 @@
     <RadioButton
         android:id="@+id/radio_answer2"
         android:tag="1"
+        style="@style/AppTheme.RadioButton.ItemRecap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/question_answers_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:visibility="gone"
         android:clickable="false"
         tools:visibility="visible"
@@ -71,10 +71,10 @@
     <RadioButton
         android:id="@+id/radio_answer3"
         android:tag="2"
+        style="@style/AppTheme.RadioButton.ItemRecap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/question_answers_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:visibility="gone"
         android:clickable="false"
         tools:visibility="visible"
@@ -83,10 +83,10 @@
     <RadioButton
         android:id="@+id/radio_answer4"
         android:tag="3"
+        style="@style/AppTheme.RadioButton.ItemRecap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/question_answers_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:visibility="gone"
         android:clickable="false"
         tools:visibility="visible"

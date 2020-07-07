@@ -72,4 +72,9 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="AppTheme.RadioButton.ItemRecap" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+    </style>
+
 </resources>

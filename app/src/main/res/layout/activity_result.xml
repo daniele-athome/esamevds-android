@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/text_specialty"
-        style="@style/TextAppearance.AppCompat.Large"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/text_result_passed"
-        style="@style/TextAppearance.AppCompat.Display3"
+        style="@style/TextAppearance.MaterialComponents.Headline3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -56,7 +56,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -81,7 +81,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -107,7 +107,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -128,7 +128,10 @@
     </LinearLayout>
 
     <TextView
-        style="?android:attr/borderlessButtonStyle"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:focusable="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
