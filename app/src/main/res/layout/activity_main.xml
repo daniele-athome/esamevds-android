@@ -98,6 +98,13 @@
         android:text="@string/specialty4" />
 
     <Button
+        android:id="@+id/button_compass_training"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_icao_alphabet"
+        android:text="@string/title_compass_training" />
+
+    <Button
         android:id="@+id/button_icao_alphabet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

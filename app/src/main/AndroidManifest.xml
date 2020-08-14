@@ -46,6 +46,7 @@
         <activity android:name=".ui.ResultActivity" />
         <activity android:name=".ui.PrintResultActivity" />
         <activity android:name=".ui.QuickieActivity" />
+        <activity android:name=".ui.CompassTrainingActivity" />
         <activity android:name=".ui.IcaoAlphabetActivity" />
     </application>
 
