@@ -33,7 +33,9 @@ import java.util.*
 class VCompassView: View {
 
     // any random degree divisible by 30
-    private val degStart = Random().nextInt(12) * 30
+    //private val degStart = Random().nextInt(12) * 30
+    // any random degree divisible by 5
+    private val degStart = Random().nextInt(72) * 5
 
     private lateinit var numDegText: Paint
     private lateinit var smallDegLine: Paint
@@ -79,28 +81,88 @@ class VCompassView: View {
         // left+right: 5 degrees (10 lines, 5 big + 5 small)
 
         canvas?.let { c ->
-            val startX = 10f
-            var i = 0
-            while ((startX + degLineX(i)) < width) {
-                val posX = startX + degLineX(i)
-                if (i % 2 == 0) {
-                    c.drawLine(posX, dpToPx(context, 50).toFloat(), posX, dpToPx(context, 75).toFloat(), bigDegLine)
+            // start from center
+            val posX = width / 2
+            when {
+                degStart % 10 == 0 -> {
+                    c.drawLine(posX.toFloat(), dpToPx(context, 50).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), bigDegLine)
                 }
-                else {
-                    // 62.5
-                    c.drawLine(posX, dpToPx(context, 62).toFloat(), posX, dpToPx(context, 75).toFloat(), smallDegLine)
+                degStart % 5 == 0 -> {
+                    c.drawLine(posX.toFloat(), dpToPx(context, 62).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), smallDegLine)
                 }
-                if (i % 6 == 0) {
-                    // 37.5
-                    c.drawText(deg2compass(degStart - (i/2*10)), posX, dpToPx(context, 35).toFloat(), numDegText)
+                else -> {
+                    throw UnsupportedOperationException("Degrees must be divisible by either 5 or 10")
                 }
-                i++
+            }
+
+            if (degStart % 30 == 0) {
+                drawDegreeText(c, posX, degStart)
+            }
+
+            val offset = dpToPx(context, 15)
+
+            // lines to the left (increase degrees)
+            var posXl = posX - offset
+            var degrees = degStart + 5
+            while (posXl >= 0) {
+                when {
+                    degrees % 10 == 0 -> {
+                        c.drawLine(posXl.toFloat(),
+                            dpToPx(context, 50).toFloat(),
+                            posXl.toFloat(),
+                            dpToPx(context, 75).toFloat(),
+                            bigDegLine)
+                    }
+                    degrees % 5 == 0 -> {
+                        c.drawLine(posXl.toFloat(),
+                            dpToPx(context, 62).toFloat(),
+                            posXl.toFloat(),
+                            dpToPx(context, 75).toFloat(),
+                            smallDegLine)
+                    }
+                }
+
+                if (degrees % 30 == 0) {
+                    drawDegreeText(c, posXl, degrees)
+                }
+
+                posXl -= offset
+                degrees += 5
+            }
+
+            // lines to the right (decrease degrees)
+            var posXr = posX + offset
+            degrees = degStart - 5
+            while (posXr <= width) {
+                when {
+                    degrees % 10 == 0 -> {
+                        c.drawLine(posXr.toFloat(),
+                            dpToPx(context, 50).toFloat(),
+                            posXr.toFloat(),
+                            dpToPx(context, 75).toFloat(),
+                            bigDegLine)
+                    }
+                    degrees % 5 == 0 -> {
+                        c.drawLine(posXr.toFloat(),
+                            dpToPx(context, 62).toFloat(),
+                            posXr.toFloat(),
+                            dpToPx(context, 75).toFloat(),
+                            smallDegLine)
+                    }
+                }
+
+                if (degrees % 30 == 0) {
+                    drawDegreeText(c, posXr, degrees)
+                }
+
+                posXr += offset
+                degrees -= 5
             }
         }
     }
 
-    private fun degLineX(ord: Int): Float {
-        return (ord * dpToPx(context, 15).toFloat())
+    private fun drawDegreeText(canvas: Canvas, posX: Int, degrees: Int) {
+        canvas.drawText(deg2compass(degrees), posX.toFloat(), dpToPx(context, 35).toFloat(), numDegText)
     }
 
     private fun deg2compass(degrees: Int): String {
