@@ -47,55 +47,65 @@
         android:text="@string/main_subtitle"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
-    <Button
-        android:id="@+id/button1"
-        android:tag="0"
-        android:onClick="select"
-        style="@style/MainActivity.Button"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/subtitle"
-        android:text="@string/specialty0" />
+        android:layout_above="@+id/button_compass_training">
 
-    <Button
-        android:id="@+id/button2"
-        android:tag="1"
-        android:onClick="select"
-        style="@style/MainActivity.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:text="@string/specialty1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button3"
-        android:tag="2"
-        android:onClick="select"
-        style="@style/MainActivity.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:text="@string/specialty2" />
+        <Button
+            android:id="@+id/button1"
+            android:tag="0"
+            android:onClick="select"
+            style="@style/MainActivity.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specialty0" />
 
-    <Button
-        android:id="@+id/button4"
-        android:tag="3"
-        android:onClick="select"
-        style="@style/MainActivity.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:text="@string/specialty3" />
+        <Button
+            android:id="@+id/button2"
+            android:tag="1"
+            android:onClick="select"
+            style="@style/MainActivity.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specialty1" />
 
-    <Button
-        android:id="@+id/button5"
-        android:tag="4"
-        android:onClick="select"
-        style="@style/MainActivity.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
-        android:text="@string/specialty4" />
+        <Button
+            android:id="@+id/button3"
+            android:tag="2"
+            android:onClick="select"
+            style="@style/MainActivity.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specialty2" />
+
+        <Button
+            android:id="@+id/button4"
+            android:tag="3"
+            android:onClick="select"
+            style="@style/MainActivity.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specialty3" />
+
+        <Button
+            android:id="@+id/button5"
+            android:tag="4"
+            android:onClick="select"
+            style="@style/MainActivity.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specialty4" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/button_compass_training"
