@@ -26,6 +26,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Build
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import java.util.*
 
@@ -33,6 +34,10 @@ class VCompassView: View {
 
     // any random degree divisible by 30
     private val degStart = Random().nextInt(12) * 30
+
+    private lateinit var numDegText: Paint
+    private lateinit var smallDegLine: Paint
+    private lateinit var bigDegLine: Paint
 
     constructor(context: Context): super(context) {
         init(context)
@@ -52,6 +57,22 @@ class VCompassView: View {
     }
 
     private fun init(context: Context) {
+        numDegText = Paint().apply {
+            color = Color.BLACK
+            textSize = dpToPx(context, 35).toFloat()
+            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+            textAlign = Paint.Align.CENTER
+        }
+
+        smallDegLine = Paint().apply {
+            color = Color.BLACK
+            strokeWidth = dpToPx(context, 5).toFloat()
+        }
+
+        bigDegLine = Paint().apply {
+            color = Color.BLACK
+            strokeWidth = dpToPx(context, 5).toFloat()
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -63,14 +84,15 @@ class VCompassView: View {
             while ((startX + degLineX(i)) < width) {
                 val posX = startX + degLineX(i)
                 if (i % 2 == 0) {
-                    c.drawLine(posX, 200f, posX, 300f, bigDegLine)
+                    c.drawLine(posX, dpToPx(context, 50).toFloat(), posX, dpToPx(context, 75).toFloat(), bigDegLine)
                 }
                 else {
-                    c.drawLine(posX, 250f, posX, 300f, smallDegLine)
+                    // 62.5
+                    c.drawLine(posX, dpToPx(context, 62).toFloat(), posX, dpToPx(context, 75).toFloat(), smallDegLine)
                 }
                 if (i % 6 == 0) {
-                    // FIXME degrees decrease going right
-                    c.drawText(deg2compass(degStart - (i/2*10)), posX, 150f, numDegText)
+                    // 37.5
+                    c.drawText(deg2compass(degStart - (i/2*10)), posX, dpToPx(context, 35).toFloat(), numDegText)
                 }
                 i++
             }
@@ -78,7 +100,7 @@ class VCompassView: View {
     }
 
     private fun degLineX(ord: Int): Float {
-        return (ord * 60f)
+        return (ord * dpToPx(context, 15).toFloat())
     }
 
     private fun deg2compass(degrees: Int): String {
@@ -91,27 +113,9 @@ class VCompassView: View {
         }
     }
 
-    companion object {
-
-        val numDegText = Paint().apply {
-            color = Color.BLACK
-            textSize = 150f
-            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-            textAlign = Paint.Align.CENTER
-        }
-
-        val smallDegLine = Paint().apply {
-            color = Color.BLACK
-            // TODO what unit? Pixels?
-            strokeWidth = 20f
-        }
-
-        val bigDegLine = Paint().apply {
-            color = Color.BLACK
-            // TODO what unit? Pixels?
-            strokeWidth = 20f
-        }
-
+    private fun dpToPx(context: Context, value: Int): Int {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+            value.toFloat(), context.resources.displayMetrics).toInt()
     }
 
 }
