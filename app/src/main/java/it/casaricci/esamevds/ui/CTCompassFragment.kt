@@ -18,30 +18,33 @@
 
 package it.casaricci.esamevds.ui
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import it.casaricci.esamevds.R
 
-class CompassTrainingActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_compass_training)
-
-        // TEST
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.train_fragment, CTCompassFragment.newInstance())
-            .commit()
-    }
+class CTCompassFragment : Fragment(), CompassTrainingFragment {
 
     companion object {
-
-        fun start(context: Context) {
-            val i = Intent(context, CompassTrainingActivity::class.java)
-            context.startActivity(i)
+        fun newInstance(): CTCompassFragment {
+            val f = CTCompassFragment()
+            // TODO what here?
+            return f
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_ct_compass, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // TODO
     }
 
 }

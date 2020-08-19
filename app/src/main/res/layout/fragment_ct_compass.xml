@@ -22,13 +22,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".ui.CompassTrainingActivity">
+    tools:context=".ui.CTCompassFragment">
 
-    <!-- TODO -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/train_fragment"
+    <it.casaricci.esamevds.ui.view.VCompassView
+        android:id="@+id/canvas_compass"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="250dp"/>
 
 </LinearLayout>
