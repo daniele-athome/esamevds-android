@@ -73,7 +73,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:drawableStart="@drawable/ic_info"
+                app:drawableStartCompat="@drawable/ic_info"
                 android:text="@string/text_info_exam" />
 
             <Button
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:drawableStart="@drawable/ic_info"
+                app:drawableStartCompat="@drawable/ic_info"
                 android:text="@string/text_info_subject" />
 
             <Button
@@ -110,7 +110,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:drawableStart="@drawable/ic_info"
+                app:drawableStartCompat="@drawable/ic_info"
                 android:text="@string/text_info_quickie" />
 
         </LinearLayout>
