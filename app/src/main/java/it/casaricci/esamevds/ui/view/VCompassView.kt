@@ -79,7 +79,7 @@ class VCompassView: View {
         // left+right: 5 degrees (10 lines, 5 big + 5 small)
 
         canvas?.let { c ->
-            val startX = 10f;
+            val startX = 10f
             var i = 0
             while ((startX + degLineX(i)) < width) {
                 val posX = startX + degLineX(i)
