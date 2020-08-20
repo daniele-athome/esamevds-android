@@ -24,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import it.casaricci.esamevds.R
+import kotlinx.android.synthetic.main.fragment_ct_compass.*
 
 class CTCompassFragment : Fragment(), CompassTrainingFragment {
 
@@ -45,6 +46,7 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TODO
+        text_question.text = "Quanti gradi sono?"
     }
 
 }

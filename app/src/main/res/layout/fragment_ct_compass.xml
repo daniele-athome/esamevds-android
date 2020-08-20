@@ -24,9 +24,38 @@
     android:orientation="vertical"
     tools:context=".ui.CTCompassFragment">
 
-    <it.casaricci.esamevds.ui.view.VCompassView
-        android:id="@+id/canvas_compass"
+    <TextView android:id="@+id/text_question"
+        style="@style/TextAppearance.CompassTraining.QuestionText"
         android:layout_width="match_parent"
-        android:layout_height="250dp"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        tools:text="Quanti gradi sono?"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- FIXME hard-coded width -->
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="120dp"
+            android:src="@drawable/compass_frame"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription" />
+
+        <it.casaricci.esamevds.ui.view.VCompassView
+            android:id="@+id/canvas_compass"
+            android:layout_width="320dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:background="@android:color/white"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
 </LinearLayout>

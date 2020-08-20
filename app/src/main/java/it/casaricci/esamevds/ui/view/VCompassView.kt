@@ -60,19 +60,19 @@ class VCompassView: View {
 
     private fun init(context: Context) {
         numDegText = Paint().apply {
-            color = Color.BLACK
+            color = Color.WHITE
             textSize = dpToPx(context, 35).toFloat()
             typeface = Typeface.defaultFromStyle(Typeface.BOLD)
             textAlign = Paint.Align.CENTER
         }
 
         smallDegLine = Paint().apply {
-            color = Color.BLACK
+            color = Color.WHITE
             strokeWidth = dpToPx(context, 5).toFloat()
         }
 
         bigDegLine = Paint().apply {
-            color = Color.BLACK
+            color = Color.WHITE
             strokeWidth = dpToPx(context, 5).toFloat()
         }
     }
@@ -81,6 +81,8 @@ class VCompassView: View {
         // left+right: 5 degrees (10 lines, 5 big + 5 small)
 
         canvas?.let { c ->
+            c.drawColor(Color.BLACK)
+
             // start from center
             val posX = width / 2
             when {
