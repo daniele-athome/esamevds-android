@@ -28,18 +28,26 @@ import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import java.util.*
 
 class VCompassView: View {
 
     // any random degree divisible by 30
     //private val degStart = Random().nextInt(12) * 30
     // any random degree divisible by 5
-    private val degStart = Random().nextInt(72) * 5
+    //private val degStart = Random().nextInt(72) * 5
 
     private lateinit var numDegText: Paint
     private lateinit var smallDegLine: Paint
     private lateinit var bigDegLine: Paint
+
+    var degrees: Int = 0
+        set(value) {
+            if (value % 5 != 0) {
+                throw IllegalArgumentException("Degrees must be divisible by 5!")
+            }
+            field = value
+            invalidate()
+        }
 
     constructor(context: Context): super(context) {
         init(context)
@@ -86,10 +94,10 @@ class VCompassView: View {
             // start from center
             val posX = width / 2
             when {
-                degStart % 10 == 0 -> {
+                degrees % 10 == 0 -> {
                     c.drawLine(posX.toFloat(), dpToPx(context, 50).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), bigDegLine)
                 }
-                degStart % 5 == 0 -> {
+                degrees % 5 == 0 -> {
                     c.drawLine(posX.toFloat(), dpToPx(context, 62).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), smallDegLine)
                 }
                 else -> {
@@ -97,25 +105,25 @@ class VCompassView: View {
                 }
             }
 
-            if (degStart % 30 == 0) {
-                drawDegreeText(c, posX, degStart)
+            if (degrees % 30 == 0) {
+                drawDegreeText(c, posX, degrees)
             }
 
             val offset = dpToPx(context, 15)
 
             // lines to the left (increase degrees)
             var posXl = posX - offset
-            var degrees = degStart + 5
+            var degreesPtr = degrees + 5
             while (posXl >= 0) {
                 when {
-                    degrees % 10 == 0 -> {
+                    degreesPtr % 10 == 0 -> {
                         c.drawLine(posXl.toFloat(),
                             dpToPx(context, 50).toFloat(),
                             posXl.toFloat(),
                             dpToPx(context, 75).toFloat(),
                             bigDegLine)
                     }
-                    degrees % 5 == 0 -> {
+                    degreesPtr % 5 == 0 -> {
                         c.drawLine(posXl.toFloat(),
                             dpToPx(context, 62).toFloat(),
                             posXl.toFloat(),
@@ -124,27 +132,27 @@ class VCompassView: View {
                     }
                 }
 
-                if (degrees % 30 == 0) {
-                    drawDegreeText(c, posXl, degrees)
+                if (degreesPtr % 30 == 0) {
+                    drawDegreeText(c, posXl, degreesPtr)
                 }
 
                 posXl -= offset
-                degrees += 5
+                degreesPtr += 5
             }
 
             // lines to the right (decrease degrees)
             var posXr = posX + offset
-            degrees = degStart - 5
+            degreesPtr = degrees - 5
             while (posXr <= width) {
                 when {
-                    degrees % 10 == 0 -> {
+                    degreesPtr % 10 == 0 -> {
                         c.drawLine(posXr.toFloat(),
                             dpToPx(context, 50).toFloat(),
                             posXr.toFloat(),
                             dpToPx(context, 75).toFloat(),
                             bigDegLine)
                     }
-                    degrees % 5 == 0 -> {
+                    degreesPtr % 5 == 0 -> {
                         c.drawLine(posXr.toFloat(),
                             dpToPx(context, 62).toFloat(),
                             posXr.toFloat(),
@@ -153,12 +161,12 @@ class VCompassView: View {
                     }
                 }
 
-                if (degrees % 30 == 0) {
-                    drawDegreeText(c, posXr, degrees)
+                if (degreesPtr % 30 == 0) {
+                    drawDegreeText(c, posXr, degreesPtr)
                 }
 
                 posXr += offset
-                degrees -= 5
+                degreesPtr -= 5
             }
         }
     }

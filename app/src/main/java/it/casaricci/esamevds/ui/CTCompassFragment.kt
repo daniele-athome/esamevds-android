@@ -23,9 +23,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.afollestad.materialdialogs.MaterialDialog
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import it.casaricci.esamevds.R
 import kotlinx.android.synthetic.main.fragment_ct_compass.*
+import java.util.*
 
 class CTCompassFragment : Fragment(), CompassTrainingFragment {
 
@@ -47,8 +49,6 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TODO
-        text_question.text = "Quanti gradi sono?"
-        text_answer.text = ""
         answer_keypad.setListener(object : NumberKeyboardListener {
             override fun onNumberClicked(number: Int) {
                 text_answer.text = text_answer.text.toString() + number.toString()
@@ -56,6 +56,23 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
 
             override fun onLeftAuxButtonClicked() {
                 // TODO confirm answer
+                if (text_answer.text == canvas_compass.degrees.toString()) {
+                    // TODO correct!
+                    MaterialDialog(context!!).show {
+                        message(text = "Giusto!")
+                        positiveButton(android.R.string.ok) {
+                            loadQuestion()
+                        }
+                    }
+                }
+                else {
+                    // TODO wrong!
+                    MaterialDialog(context!!).show {
+                        message(text = "Sbagliato!")
+                        positiveButton(android.R.string.ok)
+                    }
+
+                }
             }
 
             override fun onRightAuxButtonClicked() {
@@ -63,6 +80,14 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
             }
 
         })
+
+        loadQuestion()
+    }
+
+    private fun loadQuestion() {
+        text_question.text = "Quanti gradi sono?"
+        text_answer.text = ""
+        canvas_compass.degrees = Random().nextInt(72) * 5
     }
 
 }
