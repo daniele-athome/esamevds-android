@@ -76,6 +76,10 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="TextAppearance.CompassTraining.AnswerText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">40sp</item>
+    </style>
+
     <style name="AppTheme.RadioButton.ItemRecap" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
         <item name="android:minHeight">0dp</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>

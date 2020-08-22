@@ -23,6 +23,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import it.casaricci.esamevds.R
 import kotlinx.android.synthetic.main.fragment_ct_compass.*
 
@@ -47,6 +48,21 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         super.onViewCreated(view, savedInstanceState)
         // TODO
         text_question.text = "Quanti gradi sono?"
+        text_answer.text = ""
+        answer_keypad.setListener(object : NumberKeyboardListener {
+            override fun onNumberClicked(number: Int) {
+                text_answer.text = text_answer.text.toString() + number.toString()
+            }
+
+            override fun onLeftAuxButtonClicked() {
+                // TODO confirm answer
+            }
+
+            override fun onRightAuxButtonClicked() {
+                text_answer.text = text_answer.text.subSequence(0, text_answer.text.length - 1)
+            }
+
+        })
     }
 
 }
