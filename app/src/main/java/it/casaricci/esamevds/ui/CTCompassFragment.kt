@@ -19,14 +19,16 @@
 package it.casaricci.esamevds.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
-import com.afollestad.materialdialogs.MaterialDialog
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import it.casaricci.esamevds.R
 import kotlinx.android.synthetic.main.fragment_ct_compass.*
+import java.lang.Exception
 import java.util.*
 
 class CTCompassFragment : Fragment(), CompassTrainingFragment {
@@ -51,32 +53,31 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         // TODO
         answer_keypad.setListener(object : NumberKeyboardListener {
             override fun onNumberClicked(number: Int) {
+                if (text_answer.tag != null) {
+                    resetAnswer()
+                }
                 text_answer.text = text_answer.text.toString() + number.toString()
             }
 
             override fun onLeftAuxButtonClicked() {
-                // TODO confirm answer
                 if (text_answer.text == canvas_compass.degrees.toString()) {
-                    // TODO correct!
-                    MaterialDialog(context!!).show {
-                        message(text = "Giusto!")
-                        positiveButton(android.R.string.ok) {
+                    setAnswerCorrect()
+                    // TODO disable keypad input while waiting for this runnable
+                    Handler().postDelayed({
+                        try {
                             loadQuestion()
                         }
-                    }
+                        catch (e: Exception) {
+                        }
+                    }, 1000)
                 }
                 else {
-                    // TODO wrong!
-                    MaterialDialog(context!!).show {
-                        message(text = "Sbagliato!")
-                        positiveButton(android.R.string.ok)
-                    }
-
+                    setAnswerWrong()
                 }
             }
 
             override fun onRightAuxButtonClicked() {
-                text_answer.text = text_answer.text.subSequence(0, text_answer.text.length - 1)
+                resetAnswer()
             }
 
         })
@@ -84,9 +85,31 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         loadQuestion()
     }
 
-    private fun loadQuestion() {
-        text_question.text = "Quanti gradi sono?"
+    // TODO green/red badges here instead of text styles
+    // https://github.com/airbnb/paris
+
+    private fun setAnswerCorrect() {
+        TextViewCompat.setTextAppearance(text_answer,
+            R.style.TextAppearance_CompassTraining_AnswerText_Correct)
+        text_answer.tag = true
+    }
+
+    private fun setAnswerWrong() {
+        TextViewCompat.setTextAppearance(text_answer,
+            R.style.TextAppearance_CompassTraining_AnswerText_Wrong)
+        text_answer.tag = false
+    }
+
+    private fun resetAnswer() {
+        TextViewCompat.setTextAppearance(text_answer,
+            R.style.TextAppearance_CompassTraining_AnswerText)
+        text_answer.tag = null
         text_answer.text = ""
+    }
+
+    private fun loadQuestion() {
+        resetAnswer()
+        text_question.text = "Quanti gradi sono?"
         canvas_compass.degrees = Random().nextInt(72) * 5
     }
 

@@ -59,6 +59,7 @@
 
     </FrameLayout>
 
+    <!-- TODO padding should be 0 on small screens -->
     <TextView android:id="@+id/text_answer"
         style="@style/TextAppearance.CompassTraining.AnswerText"
         android:layout_width="match_parent"
@@ -69,6 +70,7 @@
         tools:text="140"/>
 
     <!-- TODO configure this better -->
+    <!-- TODO beware padding on keys on small screens -->
     <com.davidmiguel.numberkeyboard.NumberKeyboard
         android:id="@+id/answer_keypad"
         android:layout_width="match_parent"
