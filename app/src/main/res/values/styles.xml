@@ -77,18 +77,21 @@
     </style>
 
     <style name="TextAppearance.CompassTraining.AnswerText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:background">@color/null_</item>
         <!-- TODO test this on small screens -->
         <!-- TODO seems like there is a max size depending on screen size -->
         <item name="android:textSize">50sp</item>
     </style>
 
     <style name="TextAppearance.CompassTraining.AnswerText.Correct" parent="TextAppearance.CompassTraining.AnswerText">
-        <item name="android:textColor">@color/textPassed</item>
+        <item name="android:background">@drawable/badge_green</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.CompassTraining.AnswerText.Wrong" parent="TextAppearance.CompassTraining.AnswerText">
-        <item name="android:textColor">@color/textNotPassed</item>
+        <item name="android:background">@drawable/badge_red</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 

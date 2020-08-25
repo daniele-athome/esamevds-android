@@ -23,8 +23,8 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.paris.extensions.style
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import it.casaricci.esamevds.R
 import kotlinx.android.synthetic.main.fragment_ct_compass.*
@@ -85,26 +85,23 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         loadQuestion()
     }
 
-    // TODO green/red badges here instead of text styles
-    // https://github.com/airbnb/paris
-
     private fun setAnswerCorrect() {
-        TextViewCompat.setTextAppearance(text_answer,
-            R.style.TextAppearance_CompassTraining_AnswerText_Correct)
+        text_answer.style(R.style.TextAppearance_CompassTraining_AnswerText_Correct)
+        text_answer.hint = ""
         text_answer.tag = true
     }
 
     private fun setAnswerWrong() {
-        TextViewCompat.setTextAppearance(text_answer,
-            R.style.TextAppearance_CompassTraining_AnswerText_Wrong)
+        text_answer.style(R.style.TextAppearance_CompassTraining_AnswerText_Wrong)
+        text_answer.hint = ""
         text_answer.tag = false
     }
 
     private fun resetAnswer() {
-        TextViewCompat.setTextAppearance(text_answer,
-            R.style.TextAppearance_CompassTraining_AnswerText)
+        text_answer.style(R.style.TextAppearance_CompassTraining_AnswerText)
         text_answer.tag = null
         text_answer.text = ""
+        text_answer.hint = "Digita le cifre"
     }
 
     private fun loadQuestion() {
