@@ -56,7 +56,9 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
                 if (text_answer.tag != null) {
                     resetAnswer()
                 }
-                text_answer.text = text_answer.text.toString() + number.toString()
+                if (text_answer.length() < 3) {
+                    text_answer.text = text_answer.text.toString() + number.toString()
+                }
             }
 
             override fun onLeftAuxButtonClicked() {
