@@ -101,7 +101,7 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         text_answer.style(R.style.TextAppearance_CompassTraining_AnswerText)
         text_answer.tag = null
         text_answer.text = ""
-        text_answer.hint = "Digita le cifre"
+        text_answer.hint = "Gradi (°)"
     }
 
     private fun loadQuestion() {

@@ -80,7 +80,7 @@
         <item name="android:background">@color/null_</item>
         <!-- TODO test this on small screens -->
         <!-- TODO seems like there is a max size depending on screen size -->
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">40sp</item>
     </style>
 
     <style name="TextAppearance.CompassTraining.AnswerText.Correct" parent="TextAppearance.CompassTraining.AnswerText">
