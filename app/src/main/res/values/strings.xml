@@ -104,6 +104,9 @@
 
     <string name="text_answers_recap">Risposte errate/saltate</string>
 
+    <string name="ct_guess_degrees_question">Quanti gradi sono?</string>
+    <string name="ct_guess_degrees_answer_hint">Gradi (°)</string>
+
     <string-array name="specialty_names" translatable="false">
         <item>@string/specialty0</item>
         <item>@string/specialty1</item>

@@ -32,7 +32,7 @@ class CompassTrainingActivity : AppCompatActivity() {
 
         // TEST
         supportFragmentManager.beginTransaction()
-            .replace(R.id.train_fragment, CTCompassFragment.newInstance())
+            .replace(R.id.train_fragment, CTGuessDegreesFragment.newInstance())
             .commit()
     }
 

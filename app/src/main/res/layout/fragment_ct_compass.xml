@@ -23,7 +23,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.CTCompassFragment">
+    tools:context=".ui.CTGuessDegreesFragment">
 
     <TextView android:id="@+id/text_question"
         style="@style/TextAppearance.CompassTraining.QuestionText"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        tools:text="Quanti gradi sono?"/>
+        android:text="@string/ct_guess_degrees_question"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -68,6 +68,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:layout_margin="8dp"
+        android:hint="@string/ct_guess_degrees_answer_hint"
         tools:text="140"/>
 
     <!-- TODO configure this better -->

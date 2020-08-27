@@ -18,6 +18,7 @@
 
 package it.casaricci.esamevds.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -31,13 +32,14 @@ import kotlinx.android.synthetic.main.fragment_ct_compass.*
 import java.lang.Exception
 import java.util.*
 
-class CTCompassFragment : Fragment(), CompassTrainingFragment {
+/**
+ * "Guess the degrees" compass training game.
+ */
+class CTGuessDegreesFragment : Fragment(), CompassTrainingFragment {
 
     companion object {
-        fun newInstance(): CTCompassFragment {
-            val f = CTCompassFragment()
-            // TODO what here?
-            return f
+        fun newInstance(): CTGuessDegreesFragment {
+            return CTGuessDegreesFragment()
         }
     }
 
@@ -50,10 +52,13 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO
         answer_keypad.setListener(object : NumberKeyboardListener {
+            @SuppressLint("SetTextI18n")
             override fun onNumberClicked(number: Int) {
-                if (text_answer.tag != null) {
+                if (isWaitingCorrectAnswerAnimation()) {
+                    return
+                }
+                if (text_answer.tag != null && text_answer.tag == false) {
                     resetAnswer()
                 }
                 if (text_answer.length() < 3) {
@@ -62,9 +67,13 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
             }
 
             override fun onLeftAuxButtonClicked() {
+                // waiting for correct answer animation
+                if (isWaitingCorrectAnswerAnimation()) {
+                    return
+                }
+
                 if (text_answer.text == canvas_compass.degrees.toString()) {
                     setAnswerCorrect()
-                    // TODO disable keypad input while waiting for this runnable
                     Handler().postDelayed({
                         try {
                             loadQuestion()
@@ -79,12 +88,20 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
             }
 
             override fun onRightAuxButtonClicked() {
+                // waiting for correct answer animation
+                if (isWaitingCorrectAnswerAnimation()) {
+                    return
+                }
+
                 resetAnswer()
             }
-
         })
 
         loadQuestion()
+    }
+
+    private fun isWaitingCorrectAnswerAnimation(): Boolean {
+        return text_answer.tag != null && text_answer.tag == true
     }
 
     private fun setAnswerCorrect() {
@@ -103,12 +120,11 @@ class CTCompassFragment : Fragment(), CompassTrainingFragment {
         text_answer.style(R.style.TextAppearance_CompassTraining_AnswerText)
         text_answer.tag = null
         text_answer.text = ""
-        text_answer.hint = "Gradi (°)"
+        text_answer.hint = getString(R.string.ct_guess_degrees_answer_hint)
     }
 
     private fun loadQuestion() {
         resetAnswer()
-        text_question.text = "Quanti gradi sono?"
         canvas_compass.degrees = Random().nextInt(72) * 5
     }
 
