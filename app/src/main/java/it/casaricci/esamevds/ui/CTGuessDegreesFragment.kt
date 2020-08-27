@@ -68,7 +68,7 @@ class CTGuessDegreesFragment : Fragment(), CompassTrainingFragment {
 
             override fun onLeftAuxButtonClicked() {
                 // waiting for correct answer animation
-                if (isWaitingCorrectAnswerAnimation()) {
+                if (isWaitingCorrectAnswerAnimation() || text_answer.text.isEmpty()) {
                     return
                 }
 
