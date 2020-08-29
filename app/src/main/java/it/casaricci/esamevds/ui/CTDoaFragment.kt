@@ -18,26 +18,39 @@
 
 package it.casaricci.esamevds.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.airbnb.paris.extensions.style
-import com.davidmiguel.numberkeyboard.NumberKeyboardListener
+import com.afollestad.materialdialogs.MaterialDialog
 import it.casaricci.esamevds.R
-import kotlinx.android.synthetic.main.fragment_ct_guess_degrees.*
-import java.lang.Exception
+import kotlinx.android.synthetic.main.fragment_ct_doa.*
+import kotlinx.android.synthetic.main.fragment_ct_guess_degrees.canvas_compass
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * "Direction of arrival" compass training game.
  */
-class CTDoaFragment : Fragment(), CompassTrainingFragment {
+class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener {
 
     companion object {
+        val DOA_DEGREES = HashMap<String, Pair<Int, Int>>()
+
+        init {
+            // 30 degrees tolerance
+            DOA_DEGREES["NW"] = Pair(135-30, 135+30)
+            DOA_DEGREES["N"] = Pair(180-30, 180+30)
+            DOA_DEGREES["NE"] = Pair(225-30, 225+30)
+            DOA_DEGREES["W"] = Pair(90-30, 90+30)
+            DOA_DEGREES["E"] = Pair(270-30, 270+30)
+            DOA_DEGREES["SW"] = Pair(45-30, 45+30)
+            // FIXME this doesn't work because of the zero threshold
+            DOA_DEGREES["S"] = Pair(360-30, 0+30)
+            DOA_DEGREES["SE"] = Pair(315-30, 315+30)
+        }
+
         fun newInstance(): CTDoaFragment {
             return CTDoaFragment()
         }
@@ -54,8 +67,29 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO
+
+        arrayOf(
+            answer_north_west, answer_north, answer_north_east,
+            answer_west, answer_east,
+            answer_south_west, answer_south, answer_south_east
+        ).forEach { it.setOnClickListener(this) }
         loadQuestion()
+    }
+
+    override fun onClick(v: View?) {
+        v?.let {
+            DOA_DEGREES[it.tag]?.let { answer ->
+                if (canvas_compass.degrees >= answer.first && canvas_compass.degrees <= answer.second) {
+                    // TODO correct answer
+                    MaterialDialog(it.context).show {
+                        message(text="Corretto!")
+                        positiveButton(android.R.string.ok) {
+                            container?.onGameCompleted()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun resetAnswer() {

@@ -23,7 +23,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.CTGuessDegreesFragment">
+    tools:context=".ui.CTDoaFragment">
 
     <TextView android:id="@+id/text_question"
         style="@style/TextAppearance.CompassTraining.QuestionText"
@@ -72,6 +72,7 @@
             app:layout_row="0"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="NW"
             android:text="NW"/>
 
         <Button android:id="@+id/answer_north"
@@ -79,6 +80,7 @@
             app:layout_row="0"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="N"
             android:text="N"/>
 
         <Button android:id="@+id/answer_north_east"
@@ -86,6 +88,7 @@
             app:layout_row="0"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="NE"
             android:text="NE"/>
 
         <Button android:id="@+id/answer_west"
@@ -93,6 +96,7 @@
             app:layout_row="1"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="W"
             android:text="W"/>
 
         <Button android:id="@+id/answer_east"
@@ -100,6 +104,7 @@
             app:layout_row="1"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="E"
             android:text="E"/>
 
         <Button android:id="@+id/answer_south_west"
@@ -107,6 +112,7 @@
             app:layout_row="2"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="SW"
             android:text="SW"/>
 
         <Button android:id="@+id/answer_south"
@@ -114,6 +120,7 @@
             app:layout_row="2"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="S"
             android:text="S"/>
 
         <Button android:id="@+id/answer_south_east"
@@ -121,6 +128,7 @@
             app:layout_row="2"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
+            android:tag="SE"
             android:text="SE"/>
 
     </androidx.gridlayout.widget.GridLayout>
