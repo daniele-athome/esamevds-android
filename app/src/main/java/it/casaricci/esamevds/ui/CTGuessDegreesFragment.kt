@@ -28,7 +28,7 @@ import androidx.fragment.app.Fragment
 import com.airbnb.paris.extensions.style
 import com.davidmiguel.numberkeyboard.NumberKeyboardListener
 import it.casaricci.esamevds.R
-import kotlinx.android.synthetic.main.fragment_ct_compass.*
+import kotlinx.android.synthetic.main.fragment_ct_guess_degrees.*
 import java.lang.Exception
 import java.util.*
 
@@ -47,7 +47,7 @@ class CTGuessDegreesFragment : Fragment(), CompassTrainingFragment {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ct_compass, container, false)
+        return inflater.inflate(R.layout.fragment_ct_guess_degrees, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
