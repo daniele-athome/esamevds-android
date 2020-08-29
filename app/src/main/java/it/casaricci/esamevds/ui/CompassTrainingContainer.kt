@@ -18,10 +18,9 @@
 
 package it.casaricci.esamevds.ui
 
-interface CompassTrainingFragment {
+interface CompassTrainingContainer {
 
-    // TODO stuff for keeping score and interacting with compass training fragments
-
-    var container: CompassTrainingContainer?
+    /** Tells the container that the current game has completed. */
+    fun onGameCompleted()
 
 }

@@ -24,15 +24,26 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import it.casaricci.esamevds.R
 
-class CompassTrainingActivity : AppCompatActivity() {
+class CompassTrainingActivity : AppCompatActivity(), CompassTrainingContainer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_compass_training)
 
         // TEST
+        val f = CTGuessDegreesFragment.newInstance()
+        f.container = this
         supportFragmentManager.beginTransaction()
-            .replace(R.id.train_fragment, CTGuessDegreesFragment.newInstance())
+            .replace(R.id.train_fragment, f)
+            .commit()
+    }
+
+    override fun onGameCompleted() {
+        // TEST
+        val f = CTDoaFragment.newInstance()
+        f.container = this
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.train_fragment, f)
             .commit()
     }
 

@@ -43,6 +43,8 @@ class CTGuessDegreesFragment : Fragment(), CompassTrainingFragment {
         }
     }
 
+    override var container: CompassTrainingContainer? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,7 +78,7 @@ class CTGuessDegreesFragment : Fragment(), CompassTrainingFragment {
                     setAnswerCorrect()
                     Handler().postDelayed({
                         try {
-                            loadQuestion()
+                            container?.onGameCompleted()
                         }
                         catch (e: Exception) {
                         }
