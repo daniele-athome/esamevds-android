@@ -40,6 +40,7 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
 
         init {
             // 30 degrees tolerance
+            // TODO test whole compass coverage
             DOA_DEGREES["NW"] = Pair(135-30, 135+30)
             DOA_DEGREES["N"] = Pair(180-30, 180+30)
             DOA_DEGREES["NE"] = Pair(225-30, 225+30)
