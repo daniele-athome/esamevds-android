@@ -24,11 +24,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
+import com.airbnb.paris.extensions.style
 import it.casaricci.esamevds.R
+import it.casaricci.esamevds.Utils
 import kotlinx.android.synthetic.main.fragment_ct_doa.*
 import kotlinx.android.synthetic.main.fragment_ct_guess_degrees.canvas_compass
 import java.util.*
-import kotlin.collections.HashMap
+import kotlin.math.abs
 
 /**
  * "Direction of arrival" compass training game.
@@ -36,22 +38,6 @@ import kotlin.collections.HashMap
 class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener {
 
     companion object {
-        val DOA_DEGREES = HashMap<String, Pair<Int, Int>>()
-
-        init {
-            // 30 degrees tolerance
-            // TODO test whole compass coverage
-            DOA_DEGREES["NW"] = Pair(135-30, 135+30)
-            DOA_DEGREES["N"] = Pair(180-30, 180+30)
-            DOA_DEGREES["NE"] = Pair(225-30, 225+30)
-            DOA_DEGREES["W"] = Pair(90-30, 90+30)
-            DOA_DEGREES["E"] = Pair(270-30, 270+30)
-            DOA_DEGREES["SW"] = Pair(45-30, 45+30)
-            // FIXME this doesn't work because of the zero threshold
-            DOA_DEGREES["S"] = Pair(360-30, 0+30)
-            DOA_DEGREES["SE"] = Pair(315-30, 315+30)
-        }
-
         fun newInstance(): CTDoaFragment {
             return CTDoaFragment()
         }
@@ -78,23 +64,34 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
     }
 
     override fun onClick(v: View?) {
-        v?.let {
-            DOA_DEGREES[it.tag]?.let { answer ->
-                if (canvas_compass.degrees >= answer.first && canvas_compass.degrees <= answer.second) {
-                    // TODO correct answer
-                    MaterialDialog(it.context).show {
-                        message(text="Corretto!")
-                        positiveButton(android.R.string.ok) {
-                            container?.onGameCompleted()
-                        }
+        v?.let { view ->
+            // cardinal point degrees are stored in button tag
+            val cardinalPoint = Integer.parseInt(view.tag.toString())
+            val answerDegrees = Utils.invertDirection(cardinalPoint)
+            val answerDiff = Utils.floorMod(answerDegrees - canvas_compass.degrees + 180, 360) - 180
+
+            if (abs(answerDiff) <= 30) {
+                view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Correct)
+                // TODO correct answer
+                MaterialDialog(view.context).show {
+                    message(text="Corretto!")
+                    positiveButton(android.R.string.ok) {
+                        container?.onGameCompleted()
                     }
                 }
+            }
+            else {
+                view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Wrong)
             }
         }
     }
 
     private fun resetAnswer() {
-        // TODO
+        arrayOf(
+            answer_north_west, answer_north, answer_north_east,
+            answer_west, answer_east,
+            answer_south_west, answer_south, answer_south_east
+        ).forEach { it.style(R.style.AppTheme_Button_CompassTraining_AnswerButton) }
     }
 
     private fun loadQuestion() {

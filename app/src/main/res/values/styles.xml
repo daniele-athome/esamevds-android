@@ -16,7 +16,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
@@ -93,6 +93,18 @@
         <item name="android:background">@drawable/badge_red</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.Button.CompassTraining.AnswerButton" parent="Widget.MaterialComponents.Button"/>
+
+    <style name="AppTheme.Button.CompassTraining.AnswerButton.Correct" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/textPassed</item>
+        <item name="backgroundTint">@color/textPassed</item>
+    </style>
+
+    <style name="AppTheme.Button.CompassTraining.AnswerButton.Wrong" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/textNotPassed</item>
+        <item name="backgroundTint">@color/textNotPassed</item>
     </style>
 
     <style name="AppTheme.RadioButton.ItemRecap" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
