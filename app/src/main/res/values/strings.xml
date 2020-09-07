@@ -107,6 +107,17 @@
     <string name="ct_guess_degrees_question">Quanti gradi sono?</string>
     <string name="ct_guess_degrees_answer_hint">Gradi (°)</string>
 
+    <string name="ct_doa_question">Da dove provengo?</string>
+
+    <string name="cardinal_short_north">N</string>
+    <string name="cardinal_short_north_east">NE</string>
+    <string name="cardinal_short_north_west">NW</string>
+    <string name="cardinal_short_east">E</string>
+    <string name="cardinal_short_west">W</string>
+    <string name="cardinal_short_south_east">SE</string>
+    <string name="cardinal_short_south_west">SW</string>
+    <string name="cardinal_short_south">S</string>
+
     <string-array name="specialty_names" translatable="false">
         <item>@string/specialty0</item>
         <item>@string/specialty1</item>

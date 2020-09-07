@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Da dove provengo?"/>
+        android:text="@string/ct_doa_question"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="315"
-            android:text="NW"/>
+            android:text="@string/cardinal_short_north_west"/>
 
         <Button android:id="@+id/answer_north"
             app:layout_column="1"
@@ -81,7 +81,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="0"
-            android:text="N"/>
+            android:text="@string/cardinal_short_north"/>
 
         <Button android:id="@+id/answer_north_east"
             app:layout_column="2"
@@ -89,7 +89,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="45"
-            android:text="NE"/>
+            android:text="@string/cardinal_short_north_east"/>
 
         <Button android:id="@+id/answer_west"
             app:layout_column="0"
@@ -97,7 +97,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="270"
-            android:text="W"/>
+            android:text="@string/cardinal_short_west"/>
 
         <Button android:id="@+id/answer_east"
             app:layout_column="2"
@@ -105,7 +105,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="90"
-            android:text="E"/>
+            android:text="@string/cardinal_short_east"/>
 
         <Button android:id="@+id/answer_south_west"
             app:layout_column="0"
@@ -113,7 +113,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="225"
-            android:text="SW"/>
+            android:text="@string/cardinal_short_south_west"/>
 
         <Button android:id="@+id/answer_south"
             app:layout_column="1"
@@ -121,7 +121,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="180"
-            android:text="S"/>
+            android:text="@string/cardinal_short_south"/>
 
         <Button android:id="@+id/answer_south_east"
             app:layout_column="2"
@@ -129,7 +129,7 @@
             app:layout_columnWeight="1"
             app:layout_rowWeight="1"
             android:tag="135"
-            android:text="SE"/>
+            android:text="@string/cardinal_short_south_east"/>
 
     </androidx.gridlayout.widget.GridLayout>
 
