@@ -28,6 +28,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import it.casaricci.esamevds.Utils
 
 class VCompassView: View {
 
@@ -45,7 +46,7 @@ class VCompassView: View {
             if (value % 5 != 0) {
                 throw IllegalArgumentException("Degrees must be divisible by 5!")
             }
-            field = value
+            field = Utils.normalizeDegrees(value)
             invalidate()
         }
 
@@ -176,7 +177,7 @@ class VCompassView: View {
     }
 
     private fun deg2compass(degrees: Int): String {
-        return when (val normalized = ((degrees % 360) + 360) % 360) {
+        return when (val normalized = Utils.normalizeDegrees(degrees)) {
             0 -> "N"
             90 -> "E"
             180 -> "S"

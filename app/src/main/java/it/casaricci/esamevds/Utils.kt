@@ -51,4 +51,25 @@ object Utils {
         return Bitmap.createScaledBitmap(imageBitmap, w, h, true)
     }
 
+    fun normalizeDegrees(degrees: Int): Int {
+        return ((degrees % 360) + 360) % 360
+    }
+
+    fun invertDirection(degrees: Int) : Int {
+        return normalizeDegrees(degrees + 180)
+    }
+
+    fun floorMod(x: Int, y: Int): Int {
+        return x - floorDiv(x, y) * y
+    }
+
+    fun floorDiv(x: Int, y: Int): Int {
+        var r = x / y
+        // if the signs are different and modulo not zero, round down
+        if (x xor y < 0 && r * y != x) {
+            r--
+        }
+        return r
+    }
+
 }
