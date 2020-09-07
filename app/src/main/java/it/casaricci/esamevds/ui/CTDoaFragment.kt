@@ -19,11 +19,11 @@
 package it.casaricci.esamevds.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.afollestad.materialdialogs.MaterialDialog
 import com.airbnb.paris.extensions.style
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.Utils
@@ -55,43 +55,59 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arrayOf(
-            answer_north_west, answer_north, answer_north_east,
-            answer_west, answer_east,
-            answer_south_west, answer_south, answer_south_east
-        ).forEach { it.setOnClickListener(this) }
+        allAnswers().forEach { it.setOnClickListener(this) }
         loadQuestion()
     }
 
     override fun onClick(v: View?) {
         v?.let { view ->
+            if (!view.isClickable) {
+                return
+            }
+
             // cardinal point degrees are stored in button tag
             val cardinalPoint = Integer.parseInt(view.tag.toString())
             val answerDegrees = Utils.invertDirection(cardinalPoint)
             val answerDiff = Utils.floorMod(answerDegrees - canvas_compass.degrees + 180, 360) - 180
 
             if (abs(answerDiff) <= 30) {
-                view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Correct)
-                // TODO correct answer
-                MaterialDialog(view.context).show {
-                    message(text="Corretto!")
-                    positiveButton(android.R.string.ok) {
+                setAnswerCorrect(view)
+                Handler().postDelayed({
+                    try {
                         container?.onGameCompleted()
                     }
-                }
+                    catch (e: Exception) {
+                    }
+                }, 1000)
             }
             else {
-                view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Wrong)
+                setAnswerWrong(view)
             }
         }
     }
 
-    private fun resetAnswer() {
-        arrayOf(
+    private fun setAnswerCorrect(view: View) {
+        view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Correct)
+        allAnswers().forEach { it.isClickable = false }
+    }
+
+    private fun setAnswerWrong(view: View) {
+        view.style(R.style.AppTheme_Button_CompassTraining_AnswerButton_Wrong)
+    }
+
+    private fun allAnswers(): Array<View> {
+        return arrayOf(
             answer_north_west, answer_north, answer_north_east,
             answer_west, answer_east,
             answer_south_west, answer_south, answer_south_east
-        ).forEach { it.style(R.style.AppTheme_Button_CompassTraining_AnswerButton) }
+        )
+    }
+
+    private fun resetAnswer() {
+        allAnswers().forEach {
+            it.style(R.style.AppTheme_Button_CompassTraining_AnswerButton)
+            it.isClickable = true
+        }
     }
 
     private fun loadQuestion() {
