@@ -12,7 +12,7 @@ buildscript {
             targetSdk: 29
         ]
         versions = [
-            kotlin: '1.4.0'
+            kotlin: '1.4.10'
         ]
     }
     repositories {
