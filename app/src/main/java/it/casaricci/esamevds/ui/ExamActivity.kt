@@ -1,21 +1,3 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
 import android.content.Context
@@ -25,9 +7,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import it.casaricci.esamevds.R
-import kotlinx.android.synthetic.main.activity_exam.*
+import it.casaricci.esamevds.databinding.ActivityExamBinding
 
 class ExamActivity : AppCompatActivity(), ExamContainer {
+
+    private lateinit var binding: ActivityExamBinding
 
     private lateinit var viewModel: ExamViewModel
 
@@ -36,15 +20,16 @@ class ExamActivity : AppCompatActivity(), ExamContainer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exam)
+        binding = ActivityExamBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        button_next.setOnClickListener {
+        binding.buttonNext.setOnClickListener {
             nextQuestion()
         }
-        button_previous.setOnClickListener {
+        binding.buttonPrevious.setOnClickListener {
             previousQuestion()
         }
-        button_terminate.setOnClickListener {
+        binding.buttonTerminate.setOnClickListener {
             MaterialDialog(this).show {
                 message(text = resources.getQuantityString(R.plurals.message_terminate_exam, answeredCount, answeredCount))
                 positiveButton(android.R.string.ok) {
@@ -80,7 +65,7 @@ class ExamActivity : AppCompatActivity(), ExamContainer {
             viewModel.onRestoreInstanceState(savedInstanceState)
         }
 
-        progress_exam.max = viewModel.examData!!.questions.size
+        binding.progressExam.max = viewModel.examData!!.questions.size
 
         updateQuestion()
     }
@@ -129,13 +114,13 @@ class ExamActivity : AppCompatActivity(), ExamContainer {
     }
 
     private fun updateQuestion() {
-        progress_exam.progress = viewModel.currentQuestion
-        text_progress.text = getString(
+        binding.progressExam.progress = viewModel.currentQuestion
+        binding.textProgress.text = getString(
             R.string.exam_progress,
             viewModel.currentQuestion + 1, viewModel.examData!!.questions.size)
 
-        button_next.isEnabled = viewModel.currentQuestion < (viewModel.examData!!.questions.size - 1)
-        button_previous.isEnabled = viewModel.currentQuestion > 0
+        binding.buttonNext.isEnabled = viewModel.currentQuestion < (viewModel.examData!!.questions.size - 1)
+        binding.buttonPrevious.isEnabled = viewModel.currentQuestion > 0
 
         val f = QuestionFragment.newInstance(
             viewModel.question,

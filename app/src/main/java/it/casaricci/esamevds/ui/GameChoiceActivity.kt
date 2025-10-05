@@ -1,23 +1,6 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -27,11 +10,13 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.data.ExamSubject
+import it.casaricci.esamevds.databinding.ActivityGameChoiceBinding
 import it.casaricci.esamevds.persistence.AppDatabase
 import it.casaricci.esamevds.persistence.ExamRepository
-import kotlinx.android.synthetic.main.activity_game_choice.*
 
 class GameChoiceActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityGameChoiceBinding
 
     private val specialty: Int
         get() = intent.getIntExtra(EXTRA_SPECIALTY, -1)
@@ -39,18 +24,20 @@ class GameChoiceActivity : AppCompatActivity() {
     private lateinit var repository: ExamRepository
     private var ongoingExamId: Long? = null
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game_choice)
+        binding = ActivityGameChoiceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         repository = ExamRepository(AppDatabase(application))
 
-        subtitle.text = resources.getStringArray(R.array.specialty_names)[specialty]
+        binding.subtitle.text = resources.getStringArray(R.array.specialty_names)[specialty]
 
-        button_exam.setOnClickListener {
+        binding.buttonExam.setOnClickListener {
             doExamSimulation()
         }
-        button_subject.setOnClickListener {
+        binding.buttonSubject.setOnClickListener {
             MaterialDialog(this).show {
                 title(R.string.title_subjects)
                 listItems(R.array.subject_names) { dialog, index, _ ->
@@ -63,7 +50,7 @@ class GameChoiceActivity : AppCompatActivity() {
                 }
             }
         }
-        button_quickie.setOnClickListener {
+        binding.buttonQuickie.setOnClickListener {
             QuickieActivity.start(
                 this,
                 specialty,
@@ -81,16 +68,16 @@ class GameChoiceActivity : AppCompatActivity() {
             ongoingExamId = ongoingExam.id
 
             val ongoingExamStats = repository.getExamStats(ongoingExam.id)
-            text_info_exam.text = getString(R.string.text_info_exam_in_progress,
+            binding.textInfoExam.text = getString(R.string.text_info_exam_in_progress,
                 ongoingExamStats!!.answers, ongoingExamStats.questions)
-            text_info_exam.setTextColor(ContextCompat.getColor(this, R.color.textNotPassed))
+            binding.textInfoExam.setTextColor(ContextCompat.getColor(this, R.color.textNotPassed))
         }
         else {
             ongoingExamId = null
 
-            text_info_exam.text = getString(R.string.text_info_exam)
+            binding.textInfoExam.text = getString(R.string.text_info_exam)
             // TODO original style color
-            text_info_exam.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            binding.textInfoExam.setTextColor(ContextCompat.getColor(this, android.R.color.black))
         }
     }
 

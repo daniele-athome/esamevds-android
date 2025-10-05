@@ -1,21 +1,3 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
 import android.content.Context
@@ -23,42 +5,45 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.IntentCompat
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.data.ExamData
 import it.casaricci.esamevds.data.ExamQuestionResult
 import it.casaricci.esamevds.data.ExamResult
+import it.casaricci.esamevds.databinding.ActivityResultBinding
 import it.casaricci.esamevds.ui.adapter.RecapAdapter
-import kotlinx.android.synthetic.main.activity_result.*
-
 
 class ResultActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityResultBinding
 
     private lateinit var examData: ExamData
     private lateinit var examAnswers: Array<Int?>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        examData = intent.getParcelableExtra(EXTRA_EXAM_DATA)!!
+        examData = IntentCompat.getParcelableExtra(intent,EXTRA_EXAM_DATA, ExamData::class.java)!!
         examAnswers = intent.getIntegerArrayListExtra(EXTRA_ANSWERS)!!.toTypedArray()
 
         // TODO not really a good place for this
-        text_result_passed.setOnClickListener {
+        binding.textResultPassed.setOnClickListener {
             PrintResultActivity.start(this, examData, examAnswers)
         }
 
-        text_specialty.text = resources.getStringArray(R.array.specialty_names)[examData.specialty]
+        binding.textSpecialty.text = resources.getStringArray(R.array.specialty_names)[examData.specialty]
 
         val examResult = ExamResult.create(examData, examAnswers)
 
         val passed = examResult.passed
-        text_result_passed.setText(if (passed) R.string.exam_passed else R.string.exam_not_passed)
-        text_result_passed.setTextColor(ContextCompat.getColor(this, if (passed) R.color.textPassed else R.color.textNotPassed))
+        binding.textResultPassed.setText(if (passed) R.string.exam_passed else R.string.exam_not_passed)
+        binding.textResultPassed.setTextColor(ContextCompat.getColor(this, if (passed) R.color.textPassed else R.color.textNotPassed))
 
-        text_answers_correct.text = examResult.numCorrect.toString()
-        text_answers_wrong.text = examResult.numWrong.toString()
-        text_answers_unanswered.text = examResult.numUnanswered.toString()
+        binding.textAnswersCorrect.text = examResult.numCorrect.toString()
+        binding.textAnswersWrong.text = examResult.numWrong.toString()
+        binding.textAnswersUnanswered.text = examResult.numUnanswered.toString()
 
         // recap adapter: include wrong answers only
         val recapAdater = RecapAdapter(this)
@@ -68,7 +53,7 @@ class ResultActivity : AppCompatActivity() {
             }
         }
 
-        list_recap.adapter = recapAdater
+        binding.listRecap.adapter = recapAdater
     }
 
     companion object {

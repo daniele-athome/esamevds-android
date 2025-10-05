@@ -1,21 +1,3 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
 import android.content.Context
@@ -26,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import esame_vds.ExamDataAccess
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.data.ExamSubject
-import kotlinx.android.synthetic.main.activity_quickie.*
+import it.casaricci.esamevds.databinding.ActivityQuickieBinding
 
 class QuickieActivity : AppCompatActivity(), ExamContainer {
+
+    private lateinit var binding: ActivityQuickieBinding
 
     private lateinit var viewModel: QuickieViewModel
 
@@ -43,17 +27,18 @@ class QuickieActivity : AppCompatActivity(), ExamContainer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quickie)
+        binding = ActivityQuickieBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (loop) {
-            button_previous.visibility = View.GONE
+            binding.buttonPrevious.visibility = View.GONE
         }
         else {
-            button_previous.setOnClickListener {
+            binding.buttonPrevious.setOnClickListener {
                 previousQuestion()
             }
         }
-        button_next.setOnClickListener {
+        binding.buttonNext.setOnClickListener {
             nextQuestion()
         }
 
@@ -66,7 +51,7 @@ class QuickieActivity : AppCompatActivity(), ExamContainer {
             viewModel.onRestoreInstanceState(savedInstanceState)
         }
 
-        progress_exam.max = viewModel.examData!!.questions.size
+        binding.progressExam.max = viewModel.examData!!.questions.size
 
         updateQuestion()
     }
@@ -101,14 +86,14 @@ class QuickieActivity : AppCompatActivity(), ExamContainer {
     }
 
     private fun updateQuestion() {
-        progress_exam.progress = viewModel.currentQuestion
-        text_progress.text = getString(
+        binding.progressExam.progress = viewModel.currentQuestion
+        binding.textProgress.text = getString(
             R.string.exam_progress,
             viewModel.currentQuestion + 1, viewModel.examData!!.questions.size)
 
         if (!loop) {
-            button_next.isEnabled = viewModel.currentQuestion < (viewModel.examData!!.questions.size - 1)
-            button_previous.isEnabled = viewModel.currentQuestion > 0
+            binding.buttonNext.isEnabled = viewModel.currentQuestion < (viewModel.examData!!.questions.size - 1)
+            binding.buttonPrevious.isEnabled = viewModel.currentQuestion > 0
         }
 
         val f = QuestionFragment.newInstance(

@@ -1,30 +1,10 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui.view
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.os.Build
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
@@ -62,7 +42,6 @@ class VCompassView: View {
         init(context)
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int): super(context, attrs, defStyleAttr, defStyleRes) {
         init(context)
     }
@@ -86,89 +65,91 @@ class VCompassView: View {
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         // left+right: 5 degrees (10 lines, 5 big + 5 small)
 
-        canvas?.let { c ->
-            c.drawColor(Color.BLACK)
+        canvas.drawColor(Color.BLACK)
 
-            // start from center
-            val posX = width / 2
+        // start from center
+        val posX = width / 2
+        when {
+            degrees % 10 == 0 -> {
+                canvas.drawLine(posX.toFloat(), dpToPx(context, 50).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), bigDegLine)
+            }
+
+            degrees % 5 == 0 -> {
+                canvas.drawLine(posX.toFloat(), dpToPx(context, 62).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), smallDegLine)
+            }
+
+            else -> {
+                throw UnsupportedOperationException("Degrees must be divisible by either 5 or 10")
+            }
+        }
+
+        if (degrees % 30 == 0) {
+            drawDegreeText(canvas, posX, degrees)
+        }
+
+        val offset = dpToPx(context, 15)
+
+        // lines to the left (increase degrees)
+        var posXl = posX - offset
+        var degreesPtr = degrees + 5
+        while (posXl >= 0) {
             when {
-                degrees % 10 == 0 -> {
-                    c.drawLine(posX.toFloat(), dpToPx(context, 50).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), bigDegLine)
+                degreesPtr % 10 == 0 -> {
+                    canvas.drawLine(posXl.toFloat(),
+                        dpToPx(context, 50).toFloat(),
+                        posXl.toFloat(),
+                        dpToPx(context, 75).toFloat(),
+                        bigDegLine)
                 }
-                degrees % 5 == 0 -> {
-                    c.drawLine(posX.toFloat(), dpToPx(context, 62).toFloat(), posX.toFloat(), dpToPx(context, 75).toFloat(), smallDegLine)
-                }
-                else -> {
-                    throw UnsupportedOperationException("Degrees must be divisible by either 5 or 10")
+
+                degreesPtr % 5 == 0 -> {
+                    canvas.drawLine(posXl.toFloat(),
+                        dpToPx(context, 62).toFloat(),
+                        posXl.toFloat(),
+                        dpToPx(context, 75).toFloat(),
+                        smallDegLine)
                 }
             }
 
-            if (degrees % 30 == 0) {
-                drawDegreeText(c, posX, degrees)
+            if (degreesPtr % 30 == 0) {
+                drawDegreeText(canvas, posXl, degreesPtr)
             }
 
-            val offset = dpToPx(context, 15)
+            posXl -= offset
+            degreesPtr += 5
+        }
 
-            // lines to the left (increase degrees)
-            var posXl = posX - offset
-            var degreesPtr = degrees + 5
-            while (posXl >= 0) {
-                when {
-                    degreesPtr % 10 == 0 -> {
-                        c.drawLine(posXl.toFloat(),
-                            dpToPx(context, 50).toFloat(),
-                            posXl.toFloat(),
-                            dpToPx(context, 75).toFloat(),
-                            bigDegLine)
-                    }
-                    degreesPtr % 5 == 0 -> {
-                        c.drawLine(posXl.toFloat(),
-                            dpToPx(context, 62).toFloat(),
-                            posXl.toFloat(),
-                            dpToPx(context, 75).toFloat(),
-                            smallDegLine)
-                    }
+        // lines to the right (decrease degrees)
+        var posXr = posX + offset
+        degreesPtr = degrees - 5
+        while (posXr <= width) {
+            when {
+                degreesPtr % 10 == 0 -> {
+                    canvas.drawLine(posXr.toFloat(),
+                        dpToPx(context, 50).toFloat(),
+                        posXr.toFloat(),
+                        dpToPx(context, 75).toFloat(),
+                        bigDegLine)
                 }
 
-                if (degreesPtr % 30 == 0) {
-                    drawDegreeText(c, posXl, degreesPtr)
+                degreesPtr % 5 == 0 -> {
+                    canvas.drawLine(posXr.toFloat(),
+                        dpToPx(context, 62).toFloat(),
+                        posXr.toFloat(),
+                        dpToPx(context, 75).toFloat(),
+                        smallDegLine)
                 }
-
-                posXl -= offset
-                degreesPtr += 5
             }
 
-            // lines to the right (decrease degrees)
-            var posXr = posX + offset
-            degreesPtr = degrees - 5
-            while (posXr <= width) {
-                when {
-                    degreesPtr % 10 == 0 -> {
-                        c.drawLine(posXr.toFloat(),
-                            dpToPx(context, 50).toFloat(),
-                            posXr.toFloat(),
-                            dpToPx(context, 75).toFloat(),
-                            bigDegLine)
-                    }
-                    degreesPtr % 5 == 0 -> {
-                        c.drawLine(posXr.toFloat(),
-                            dpToPx(context, 62).toFloat(),
-                            posXr.toFloat(),
-                            dpToPx(context, 75).toFloat(),
-                            smallDegLine)
-                    }
-                }
-
-                if (degreesPtr % 30 == 0) {
-                    drawDegreeText(c, posXr, degreesPtr)
-                }
-
-                posXr += offset
-                degreesPtr -= 5
+            if (degreesPtr % 30 == 0) {
+                drawDegreeText(canvas, posXr, degreesPtr)
             }
+
+            posXr += offset
+            degreesPtr -= 5
         }
     }
 

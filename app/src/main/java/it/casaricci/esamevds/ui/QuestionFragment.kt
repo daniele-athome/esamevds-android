@@ -1,21 +1,3 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
 import android.content.Context
@@ -28,11 +10,12 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.os.BundleCompat
 import androidx.fragment.app.Fragment
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.Utils
 import it.casaricci.esamevds.data.ExamQuestion
-import kotlinx.android.synthetic.main.fragment_question.*
+import it.casaricci.esamevds.databinding.FragmentQuestionBinding
 
 class QuestionFragment : Fragment() {
 
@@ -115,6 +98,9 @@ class QuestionFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentQuestionBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var question: ExamQuestion
     private var answer: Int? = null
 
@@ -130,25 +116,32 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_question, container, false)
+        _binding = FragmentQuestionBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val chosenAnswer: Int = arguments!!["chosenAnswer"] as Int
-        question = arguments!!.getParcelable("question")!!
+        val chosenAnswer: Int = requireArguments().getInt("chosenAnswer")
+        question = BundleCompat.getParcelable(
+            requireArguments(), "question", ExamQuestion::class.java)!!
         answer = if (chosenAnswer < 0) null else chosenAnswer
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         textAnswers = arrayOf(
-            radio_answer1,
-            radio_answer2,
-            radio_answer3,
-            radio_answer4
+            binding.radioAnswer1,
+            binding.radioAnswer2,
+            binding.radioAnswer3,
+            binding.radioAnswer4
         )
         for (radioAnswer in textAnswers) {
             radioAnswer.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -157,7 +150,7 @@ class QuestionFragment : Fragment() {
                     if (isCheckAnswer) {
                         checkAnswer(answer)
                     }
-                    arguments!!.putInt("chosenAnswer", answer)
+                    requireArguments().putInt("chosenAnswer", answer)
                     examContainer?.storeAnswer(answer)
                 }
             }
@@ -184,7 +177,7 @@ class QuestionFragment : Fragment() {
 
     private fun loadQuestion() {
         bindQuestion(
-            context!!,
+            requireContext(),
             question,
             answer,
             view as ViewGroup

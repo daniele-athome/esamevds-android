@@ -1,25 +1,6 @@
-/*
- * EsameVDS Android app
- * Copyright (c) 2020 Daniele Ricci
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package it.casaricci.esamevds.ui
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +8,7 @@ import androidx.fragment.app.Fragment
 import com.airbnb.paris.extensions.style
 import it.casaricci.esamevds.R
 import it.casaricci.esamevds.Utils
-import kotlinx.android.synthetic.main.fragment_ct_doa.*
-import kotlinx.android.synthetic.main.fragment_ct_guess_degrees.canvas_compass
+import it.casaricci.esamevds.databinding.FragmentCtDoaBinding
 import java.util.*
 import kotlin.math.abs
 
@@ -45,11 +25,20 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
 
     override var container: CompassTrainingContainer? = null
 
+    private var _binding: FragmentCtDoaBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ct_doa, container, false)
+        _binding = FragmentCtDoaBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,15 +57,15 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
             // cardinal point degrees are stored in button tag
             val cardinalPoint = Integer.parseInt(view.tag.toString())
             val answerDegrees = Utils.invertDirection(cardinalPoint)
-            val answerDiff = Utils.floorMod(answerDegrees - canvas_compass.degrees + 180, 360) - 180
+            val answerDiff = Utils.floorMod(answerDegrees - binding.canvasCompass.degrees + 180, 360) - 180
 
             if (abs(answerDiff) <= 30) {
                 setAnswerCorrect(view)
-                Handler().postDelayed({
+                binding.root.handler.postDelayed({
                     try {
                         container?.onGameCompleted()
                     }
-                    catch (e: Exception) {
+                    catch (_: Exception) {
                     }
                 }, 1000)
             }
@@ -97,9 +86,9 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
 
     private fun allAnswers(): Array<View> {
         return arrayOf(
-            answer_north_west, answer_north, answer_north_east,
-            answer_west, answer_east,
-            answer_south_west, answer_south, answer_south_east
+            binding.answerNorthWest, binding.answerNorth, binding.answerNorthEast,
+            binding.answerWest, binding.answerEast,
+            binding.answerSouthWest, binding.answerSouth, binding.answerSouthEast
         )
     }
 
@@ -112,7 +101,7 @@ class CTDoaFragment : Fragment(), CompassTrainingFragment, View.OnClickListener 
 
     private fun loadQuestion() {
         resetAnswer()
-        canvas_compass.degrees = Random().nextInt(72) * 5
+        binding.canvasCompass.degrees = Random().nextInt(72) * 5
     }
 
 }
