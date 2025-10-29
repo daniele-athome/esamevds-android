@@ -35,6 +35,9 @@ class PrintResultActivity : AppCompatActivity() {
             print()
         }
 
+        // TODO migrate to WebViewAssetLoader
+        binding.document.settings.allowFileAccess = true
+
         renderDocument()
     }
 
