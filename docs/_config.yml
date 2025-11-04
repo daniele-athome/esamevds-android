@@ -1,6 +1,6 @@
 title: EsameVDS
 description: Simulatore di esame per l'attestato di volo VDS per Android
-baseurl: "/esamevds"
+baseurl: "/esamevds-android"
 url: ""
 remote_theme: pages-themes/architect@v0.2.0
 plugins:
