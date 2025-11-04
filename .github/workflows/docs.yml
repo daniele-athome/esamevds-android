@@ -1,0 +1,54 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+      - release
+    paths:
+      - README.md
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+      - 'fastlane/metadata/android/*/images/**'
+  workflow_dispatch:
+
+jobs:
+  gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Use GitHub Actions' cache to cache dependencies on servers
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .asdf/**
+            vendor/bundle
+          key: ${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
+
+      #- name: Copy screenshots for README to docs
+      #  run: |
+      #    mkdir ./docs/screenshots
+      #    cp ./fastlane/metadata/android/en-US/images/phoneScreenshots/* ./docs/screenshots/
+
+      - name: Copy main README to docs
+        run: |
+          echo -e "---\ntitle: EsameVDS\nlayout: default\n---\n\n" >./docs/index.md
+          cat ./README.md >>./docs/index.md
+          sed -i 's/(docs\/\([a-z-]*\)\.md)/(\1)/' ./docs/index.md
+          sed -i 's/\/fastlane\/metadata\/android\/en-US\/images\/phoneScreenshots/screenshots/' ./docs/index.md
+
+      # Use GitHub Deploy Action to build and deploy to Github
+      # For latest version: `jeffreytse/jekyll-deploy-action@master`
+      - uses: jeffreytse/jekyll-deploy-action@v0.6.0
+        with:
+          provider: 'github'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'gh-pages'
+          jekyll_src: './docs/'
